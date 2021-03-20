@@ -1,0 +1,26 @@
+[
+    {
+        "vehicleType" : "Bike",
+        "imgUrl" : "https://i.ibb.co/9qfh06q/bike.png",
+        "userLimit" : "2",
+        "cost" : "75"
+    },
+    {
+        "vehicleType" : "Car",
+        "imgUrl":"https://i.ibb.co/4R4vFWx/car.png",
+        "userLimit" : "4",
+        "cost" : "175"
+    },
+    {
+        "vehicleType" : "Bus",
+        "imgUrl" :"https://i.ibb.co/7SkTdfp/bus.png",
+        "userLimit" : "13",
+        "cost" : "550"
+    },
+    {
+        "vehicleType" : "Train",
+        "imgUrl" :"https://i.ibb.co/MMKZYVB/train.png",
+        "userLimit" : "20",
+        "cost" : "500"
+    }
+]
