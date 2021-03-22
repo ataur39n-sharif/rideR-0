@@ -34,11 +34,10 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                <Link className="nav-link active" aria-current="page" to="/search">Search</Link>
+                <Link className="nav-link active" aria-current="page" to={"/vehicleType/Car"}>Search</Link>
                 {
-                  loggedInUser.email && loggedInUser.name ? <Link className="nav-link" to="/">{loggedInUser.name}</Link> : <Link className="nav-link" to="/login">LogIn</Link>
+                  loggedInUser.email && loggedInUser.name ?<Link className="nav-link" to="/"> <button className="btn btn-dark"> {loggedInUser.name} </button></Link> : <Link className="nav-link" to="/login"> <button className="btn btn-warning">LogIn </button></Link>
                 }
-                {/* <Link className="nav-link" to="#">Pricing</Link> */}
               </div>
             </div>
           </div>
@@ -59,9 +58,9 @@ function App() {
           <PrivateRoute path="/vehicleType/:vehicle">
             <Search></Search>
           </PrivateRoute>
-          <PrivateRoute path="/search">
+          {/* <PrivateRoute path="/search">
             <Search></Search>
-          </PrivateRoute>
+          </PrivateRoute> */}
         </Switch>
       </Router>
     </userContext.Provider>
