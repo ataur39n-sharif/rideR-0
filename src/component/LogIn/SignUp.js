@@ -47,24 +47,6 @@ const SignUp = () => {
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo)
         }
-        // const newUser = { ...user }
-        // newUser[e.target.name] = e.target.value;
-        // setUser(newUser)
-
-
-        // const userName = name =>{
-        //     const user = firebase.auth().currentUser;
-
-        //     user.updateProfile({
-        //         displayName: name ,
-        //     })
-        //     .then(result =>{
-        //         console.log('successfully update name' ,result)
-        //     })
-        //     .catch(error =>{
-        //         console.log(error.message)
-        //     })
-        // }
     }
 
     const handelSubmit = (e) => {

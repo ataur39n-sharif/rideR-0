@@ -10,7 +10,7 @@ const Home = () => {
         <div className="App container mt-5">
             <h1 className='mb-5'>Choose which transport you need </h1>
             {/* <Link to='/search'>search page</Link> */}
-            <div className='row'>
+            <div className='row d-flex justify-content-center'>
                 {
                     data.map(perdata => <HomeDetails data={perdata} key={Math.random()}></HomeDetails>)
                 }
