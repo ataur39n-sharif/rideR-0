@@ -37,9 +37,19 @@ const SignUp = () => {
     const handelChange = (e) => {
         console.log(e.target.name, e.target.value);
 
-        const newUser = { ...user }
-        newUser[e.target.name] = e.target.value;
-        setUser(newUser)
+        let isFormValid = true;
+
+        if (e.target.name === 'email') {
+            isFormValid = /\S+@\S+\.\S+/.test(e.target.value)
+        }
+        if (isFormValid) {
+            const newUserInfo = { ...user };
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo)
+        }
+        // const newUser = { ...user }
+        // newUser[e.target.name] = e.target.value;
+        // setUser(newUser)
 
 
         // const userName = name =>{
@@ -62,7 +72,7 @@ const SignUp = () => {
     
         if (user.password1.length > 6) {
             if (user.password1 === user.password2) {
-                setResult('Account successfully created . Now click LogIn button for log in')
+                
                 firebase.auth().createUserWithEmailAndPassword(user.email, user.password1)
                     .then(results => {
                         console.log(results.user.displayName)
@@ -74,6 +84,7 @@ const SignUp = () => {
                         }
                         setUser(newUser)
                         setLoggedInUser(newUser)
+                        setResult('Account successfully created . Now click LogIn button for log in')
                     })
                     .catch(err => {
                         setMessage(err.message);
