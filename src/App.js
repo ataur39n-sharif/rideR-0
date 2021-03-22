@@ -30,45 +30,25 @@ function App() {
       {/* <h1>email : {loggedInUser.email}</h1>
       <h1>name : {loggedInUser.name}</h1> */}
       <Router>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <Link className="navbar-brand" to="/home">Rider</Link>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  <div className="collapse navbar-collapse" id="navbarNav">
+    <ul className="navbar-nav">
+      <li className="nav-item active">
+        <Link className="nav-link" to="/">Home </Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+      <li className="nav-item">
+        <Link className="nav-link" to={"/vehicleType/Car"}>Destination</Link>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      {/* <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> */}
+      {
+        loggedInUser.email && loggedInUser.name ? <Link className="nav-link" to="/"><button onClick={handelSignOut} className="btn btn-dark"> {loggedInUser.name} </button> </Link> : <Link className="nav-link" to="/login"><button className="btn btn-warning">LogIn </button> </Link>
+      }
     </ul>
   </div>
 </nav>
-        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="container-fluid">
-            <Link className="navbar-brand" to="/home">Rider</Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className="navbar-nav">
-                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                <Link className="nav-link active" aria-current="page" to={"/vehicleType/Car"}>Search</Link>
-                {
-                  loggedInUser.email && loggedInUser.name ?<Link className="nav-link" to="/"> <button onClick={handelSignOut} className="btn btn-dark"> {loggedInUser.name} </button></Link> : <Link className="nav-link" to="/login"> <button className="btn btn-warning">LogIn </button></Link>
-                }
-              </div>
-            </div>
-          </div>
-        </nav> */}
         <Switch>
           <Route exact path="/">
             <Home></Home>
