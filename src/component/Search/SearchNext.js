@@ -14,13 +14,15 @@ console.log(props.state);
     })
     
 if(showResult === true) {
+
     const result = vehicleData.find(({ vehicleType }) => vehicleType === vehicle);
+
 const { vehicleType , userLimit , cost , imgUrl} = result
 const newData = {
     // vehicleType : vehicleType || '',
-    userLimit : userLimit || '',
-    cost : cost || '',
-    imgUrl : imgUrl || '',
+    userLimit : userLimit,
+    cost : cost ,
+    imgUrl : imgUrl,
 }
 
     setDetails(newData)

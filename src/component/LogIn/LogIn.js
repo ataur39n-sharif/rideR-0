@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle , faFacebook} from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -21,6 +21,10 @@ if (!firebase.apps.length) {
 const LogIn = () => {
 
 const [loggedInUser, setLoggedInUser] = useContext(userContext)
+
+let history = useHistory();
+let location = useLocation();
+let { from } = location.state || { from: { pathname: "/" } };
 
     const [user,setUser] = useState({
         name: '',
@@ -50,6 +54,7 @@ const [loggedInUser, setLoggedInUser] = useContext(userContext)
             }
             setUser(newUser)
             setLoggedInUser(newUser)
+            history.replace(from);
             console.log(result);
         })
         .catch(err =>{
@@ -70,6 +75,7 @@ const [loggedInUser, setLoggedInUser] = useContext(userContext)
                 }
                 setUser(newUser);
                 setLoggedInUser(newUser)
+                history.replace(from);
             })
             .catch(err => {
                 console.log(err.message)
@@ -87,6 +93,7 @@ const [loggedInUser, setLoggedInUser] = useContext(userContext)
                 }
                 setUser(newUser);
                 setLoggedInUser(newUser)
+                history.replace(from);
             })
             .catch(err => {
                 console.log(err.message)
