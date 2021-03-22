@@ -12,7 +12,7 @@ import { userContext } from '../../App';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
-    firebase.app(); 
+    firebase.app();
 }
 
 
@@ -29,7 +29,7 @@ const SignUp = () => {
 
     const [showResult, setResult] = useState()
 
-    const [showMessage , setMessage] = useState()
+    const [showMessage, setMessage] = useState()
 
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
@@ -51,16 +51,16 @@ const SignUp = () => {
 
     const handelSubmit = (e) => {
         e.preventDefault();
-    
+
         if (user.password1.length > 6) {
             if (user.password1 === user.password2) {
-                
+
                 firebase.auth().createUserWithEmailAndPassword(user.email, user.password1)
                     .then(results => {
                         console.log(results.user.displayName)
                         userName(user.name)
-                        const { displayName, email} = results.user;
-                        const newUser ={
+                        const { displayName, email } = results.user;
+                        const newUser = {
                             name: displayName,
                             email: email,
                         }
@@ -76,24 +76,22 @@ const SignUp = () => {
                 setResult('Password not matched')
             }
         }
-        else{
+        else {
             setResult('Password must be at least 6 characters')
         }
 
-        const userName = name =>{
-            console.log(name)
+        const userName = name => {
             const user = firebase.auth().currentUser;
-            console.log(user)
-    
+
             user.updateProfile({
-                displayName: name ,
+                displayName: name,
             })
-            .then(result =>{
-                console.log('successfully update name' ,result)
-            })
-            .catch(error =>{
-                setMessage(error.message)
-            })
+                .then(result => {
+                    console.log('successfully update name', result)
+                })
+                .catch(error => {
+                    setMessage(error.message)
+                })
         }
     }
 
