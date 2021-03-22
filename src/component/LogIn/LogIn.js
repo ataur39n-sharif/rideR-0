@@ -41,6 +41,8 @@ let { from } = location.state || { from: { pathname: "/" } };
         setUser(newUser)
     }
 
+    const [showMessage , setMessage] = useState()
+
     const handelSubmit = (e) => {
         e.preventDefault();
         console.log('clicked')
@@ -58,7 +60,7 @@ let { from } = location.state || { from: { pathname: "/" } };
             console.log(result);
         })
         .catch(err =>{
-            console.log(err.message)
+            setMessage(err.message)
         })
 
     }
@@ -78,7 +80,7 @@ let { from } = location.state || { from: { pathname: "/" } };
                 history.replace(from);
             })
             .catch(err => {
-                console.log(err.message)
+                setMessage(err.message)
             })
     }
     const handelFbSignIn = () => {
@@ -96,7 +98,7 @@ let { from } = location.state || { from: { pathname: "/" } };
                 history.replace(from);
             })
             .catch(err => {
-                console.log(err.message)
+                setMessage(err.message)
             })
     }
  
@@ -108,6 +110,9 @@ let { from } = location.state || { from: { pathname: "/" } };
                     <form className="">
                         <input className='form-control m-2' type="text" placeholder="Enter your email address"  onBlur={handelChange} name='email'/>
                         <input className='form-control m-2' type="password" placeholder="Enter your password" onBlur={handelChange} name='password' />
+                        
+                        <label className=' p-3' htmlFor="">{showMessage}</label>
+                        <br/>
                         <button onClick={handelSubmit} className='btn btn-dark'> Submit</button>
                     </form>
                     <h4>New User ? <Link to="/signUp">SignUp</Link></h4>

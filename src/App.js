@@ -18,12 +18,17 @@ export const userContext = createContext()
 function App() {
 
   const [loggedInUser, setLoggedInUser] = useState({})
-  console.log(loggedInUser)
+  // console.log(loggedInUser)
+
+  const handelSignOut = () => {
+    const signOut = '' ;
+    setLoggedInUser(signOut)
+  }
 
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <h1>email : {loggedInUser.email}</h1>
-      <h1>name : {loggedInUser.name}</h1>
+      {/* <h1>email : {loggedInUser.email}</h1>
+      <h1>name : {loggedInUser.name}</h1> */}
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
@@ -36,7 +41,7 @@ function App() {
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                 <Link className="nav-link active" aria-current="page" to={"/vehicleType/Car"}>Search</Link>
                 {
-                  loggedInUser.email && loggedInUser.name ?<Link className="nav-link" to="/"> <button className="btn btn-dark"> {loggedInUser.name} </button></Link> : <Link className="nav-link" to="/login"> <button className="btn btn-warning">LogIn </button></Link>
+                  loggedInUser.email && loggedInUser.name ?<Link className="nav-link" to="/"> <button onClick={handelSignOut} className="btn btn-dark"> {loggedInUser.name} </button></Link> : <Link className="nav-link" to="/login"> <button className="btn btn-warning">LogIn </button></Link>
                 }
               </div>
             </div>

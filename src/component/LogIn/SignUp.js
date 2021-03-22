@@ -12,7 +12,7 @@ import { userContext } from '../../App';
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 } else {
-    firebase.app(); // if already initialized, use that one
+    firebase.app(); 
 }
 
 
@@ -28,6 +28,8 @@ const SignUp = () => {
     })
 
     const [showResult, setResult] = useState()
+
+    const [showMessage , setMessage] = useState()
 
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
@@ -60,7 +62,7 @@ const SignUp = () => {
     
         if (user.password1.length > 6) {
             if (user.password1 === user.password2) {
-                setResult('Password matched')
+                setResult('Account successfully created . Now click LogIn button for log in')
                 firebase.auth().createUserWithEmailAndPassword(user.email, user.password1)
                     .then(results => {
                         console.log(results.user.displayName)
@@ -74,7 +76,7 @@ const SignUp = () => {
                         setLoggedInUser(newUser)
                     })
                     .catch(err => {
-                        console.log(err);
+                        setMessage(err.message);
                     })
             }
             else {
@@ -97,7 +99,7 @@ const SignUp = () => {
                 console.log('successfully update name' ,result)
             })
             .catch(error =>{
-                console.log(error.message)
+                setMessage(error.message)
             })
         }
     }
@@ -117,7 +119,7 @@ const SignUp = () => {
                 setLoggedInUser(newUser)
             })
             .catch(err => {
-                console.log(err.message)
+                setMessage(err.message)
             })
     }
 
@@ -135,7 +137,7 @@ const SignUp = () => {
                 setLoggedInUser(newUser)
             })
             .catch(err => {
-                console.log(err.message)
+                setMessage(err.message)
             })
     }
     return (
@@ -150,6 +152,9 @@ const SignUp = () => {
                         <input className='form-control m-2' type="password" placeholder="Confirm your password" onBlur={handelChange} name='password2' />
                         {
                             <p>{showResult}</p>
+                        }
+                        {
+                            <p>{showMessage}</p>
                         }
                         <button onClick={handelSubmit} className='btn btn-dark'> Submit</button>
                         {/* <input  className='btn btn-dark' type="submit" value="Submit" /> */}
